@@ -45,3 +45,8 @@ compileKotlin {
 compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
 }
+
+task runCron(type: JavaExec) {
+    main = 'com.elijahverdoorn.chronogg.CronApplicationMain'
+    classpath = sourceSets.main.runtimeClasspath
+}

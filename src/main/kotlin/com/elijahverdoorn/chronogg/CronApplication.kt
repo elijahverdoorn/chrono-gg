@@ -1,3 +1,5 @@
+@file:JvmName("CronApplicationMain")
+
 package com.elijahverdoorn.chronogg
 
 import com.elijahverdoorn.chronogg.data.ChronoRssReader
