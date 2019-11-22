@@ -13,3 +13,6 @@
 /captures
 .externalNativeBuild
 
+# configuration and output files
+config.json
+chronoDailyDeal.json
