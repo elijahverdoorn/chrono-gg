@@ -1,7 +1,7 @@
 package com.elijahverdoorn.chronogg.controllers.deal
 
-import com.elijahverdoorn.chronogg.api.ChronoGgApi
+import com.elijahverdoorn.chronogg.data.ChronoRssReader
 
 class DealControllerFactory {
-    fun createDealController() = DealController(ChronoGgApi())
+    fun createDealController() = DealController(ChronoRssReader())
 }

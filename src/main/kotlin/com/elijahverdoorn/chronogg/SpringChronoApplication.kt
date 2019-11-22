@@ -10,11 +10,11 @@ import org.springframework.context.annotation.Configuration
 @SpringBootApplication
 @EnableAutoConfiguration
 @Configuration
-class Application {
+class SpringChronoApplication {
     @Bean
     fun controller() = DealControllerFactory().createDealController()
 }
 
 fun main(args: Array<String>) {
-    SpringApplication.run(Application::class.java, *args)
+    SpringApplication.run(SpringChronoApplication::class.java, *args)
 }

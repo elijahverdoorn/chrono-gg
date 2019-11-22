@@ -1,19 +1,19 @@
-package com.elijahverdoorn.chronogg.api
+package com.elijahverdoorn.chronogg.data
 
 import com.apptastic.rssreader.RssReader
 import com.elijahverdoorn.chronogg.models.Deal
 import java.text.SimpleDateFormat
 import java.util.stream.Collectors
 
-class ChronoGgApi {
+class ChronoRssReader {
     val reader = RssReader()
 
     val latestDeal: Deal by lazy {
         getLatestDealString().let {
             Deal(
-                    title = parseTitle(it),
-                    date = parseDate(it),
-                    price = parsePrice(it)
+                title = parseTitle(it),
+                date = parseDate(it),
+                price = parsePrice(it)
             )
         }
     }
