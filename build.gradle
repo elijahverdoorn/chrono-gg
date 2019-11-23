@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlin_version = '1.3.10' // Required for Kotlin integration
+    ext.kotlin_version = '1.3.60' // Required for Kotlin integration
     ext.spring_boot_version = '2.1.0.RELEASE'
     repositories {
         jcenter()
@@ -15,11 +15,9 @@ apply plugin: 'kotlin' // Required for Kotlin integration
 apply plugin: "kotlin-spring" // https://kotlinlang.org/docs/reference/compiler-plugins.html#spring-support
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'application'
 
-jar {
-    baseName = 'chronogg'
-    version = '0.0.1'
-}
+mainClassName = 'com.elijahverdoorn.chronogg.CronApplicationMain'
 
 repositories {
     mavenCentral()
@@ -46,7 +44,7 @@ compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
 }
 
-task runCron(type: JavaExec) {
-    main = 'com.elijahverdoorn.chronogg.CronApplicationMain'
-    classpath = sourceSets.main.runtimeClasspath
-}
+//task runCron(type: JavaExec) {
+//    main = 'com.elijahverdoorn.chronogg.CronApplicationMain'
+//    classpath = sourceSets.main.runtimeClasspath
+//}

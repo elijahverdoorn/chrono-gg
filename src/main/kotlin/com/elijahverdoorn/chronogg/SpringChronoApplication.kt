@@ -15,6 +15,6 @@ class SpringChronoApplication {
     fun controller() = DealControllerFactory().createDealController()
 }
 
-fun main(args: Array<String>) {
-    SpringApplication.run(SpringChronoApplication::class.java, *args)
-}
+//fun main(args: Array<String>) {
+//    SpringApplication.run(SpringChronoApplication::class.java, *args)
+//}
