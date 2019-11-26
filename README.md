@@ -12,6 +12,7 @@ The application can be run either as a Spring Boot REST service, or as a simple 
 
 To run as a REST service, use `./gradlew bootRun`.
 To run as a standalone, one-off application use `./gradlew run`
+To create a standalone JAR, use `./gradlew bootJar`
 
 ## Configuration
 The application can be configured using a JSON file. Create a file following the schema outlined in `sample-config.json`. The one-off use case will make use of the values defined in this file.

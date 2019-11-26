@@ -26,6 +26,7 @@ class CronApplication {
             }
         } catch (e: Exception) {
             println("Exception reading from config file. Falling back to default.")
+            println(e)
         } finally {
             return fileLocation
         }
