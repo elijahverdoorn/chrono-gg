@@ -1,10 +1,13 @@
 # Chrono.gg API
 
-A simple application that wraps the Deal-of-the-Day RSS system found on chrono.gg into a REST API.
+A simple application that wraps the Deal-of-the-Day RSS system found on chrono.gg into a REST API, or a daily script to pull the deal from the feed and wrap it in a convenient JSON file.
+
+To see a sample of the JSON output, visit [https://elijahverdoorn.com/chronogg/deal.json](https://elijahverdoorn.com/chronogg/deal.json)
 
 ## Technologies
 - Kotlin
 - Spring Boot
+- Cron
 - RSS
 
 ## Usage
