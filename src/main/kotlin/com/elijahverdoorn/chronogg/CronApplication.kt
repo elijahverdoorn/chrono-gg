@@ -8,7 +8,9 @@ import com.google.gson.JsonParser
 import java.io.File
 import java.lang.Exception
 
-class CronApplication {
+class CronApplication(
+    var configFileLocation: String = CONFIG_FILE_LOCATION
+) {
     fun main() {
         val deal = ChronoRssReader().latestDeal
         val json = Gson().toJson(deal)
@@ -18,7 +20,7 @@ class CronApplication {
     private fun loadFileTarget(): String {
         var fileLocation = DEFAULT_FILE_TARGET
         try {
-            File(CONFIG_FILE_LOCATION).apply {
+            File(configFileLocation).apply {
                 if (canRead()) {
                     val text = readText()
                     fileLocation = JsonParser.parseString(text).asJsonObject.get(CONFIG_PROPERTY).asString
@@ -39,6 +41,12 @@ class CronApplication {
     }
 }
 
-fun main() {
-    CronApplication().main()
+fun main(args: Array<String>) {
+    if (args.isNotEmpty()) {
+        // if the user passed us a command line location for their config file, use that
+        CronApplication(args[0]).main()
+    } else {
+        // otherwise use the default config file location
+        CronApplication().main()
+    }
 }

@@ -21,3 +21,5 @@ To create a standalone JAR, use `./gradlew bootJar`
 The application can be configured using a JSON file. Create a file following the schema outlined in `sample-config.json`. The one-off use case will make use of the values defined in this file.
 
 Note: A sample cron entry that might be helpful for this application, assuming that your server is running on Pacific time, would be `2 9 * * * java -jar <PATH_TO_JAR>`. This runs the program every day at 9:02AM pacific time, which is just 2 minutes after chrono.gg updates. This buffer time allows for any latency that may exist in the RSS feed refreshing.
+
+The application takes an optional command-line argument, which is the relative file path of the config file. If no argument is provided, the program will fall back to `./config.json`.
