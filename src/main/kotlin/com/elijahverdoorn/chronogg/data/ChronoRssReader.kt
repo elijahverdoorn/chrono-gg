@@ -3,6 +3,7 @@ package com.elijahverdoorn.chronogg.data
 import com.apptastic.rssreader.Item
 import com.apptastic.rssreader.RssReader
 import com.elijahverdoorn.chronogg.models.Deal
+import org.jsoup.Jsoup
 import java.text.SimpleDateFormat
 import java.util.stream.Collectors
 
@@ -18,6 +19,8 @@ class ChronoRssReader {
                 title = parseTitle(it),
                 date = parseDate(it),
                 price = parsePrice(it),
+                imgUrl = parseImage(parseDescription(latestItem)),
+                description = parseDescription(latestItem),
                 communityLink = parseLink(latestItem)
             )
         }
@@ -40,7 +43,22 @@ class ChronoRssReader {
 
     private fun parseLink(item: Item) = item.link.orElse("")
 
+    private fun parseDescription(item: Item) = item.description.orElse("").toString()
+
+    private fun parseImage(str: String): String {
+        val document = Jsoup.parse(str)
+        document.getElementsByTag("img").forEach {
+            if (it.hasAttr("width") && it.hasAttr("height")) {
+                if (it.hasAttr("alt")) {
+                    return it.attr("src")
+                }
+            }
+        }
+        return ""
+    }
+
     companion object {
         const val RSS_FEED_URL = "https://community.chrono.gg/c/daily-deals.rss"
+        val IMG_REGEX = "/<img.*?src=\"(.*?)\"[^\\>]+>/g".toRegex()
     }
 }
