@@ -56,9 +56,4 @@ class ChronoRssReader {
         }
         return ""
     }
-
-    companion object {
-        const val RSS_FEED_URL = "https://community.chrono.gg/c/daily-deals.rss"
-        val IMG_REGEX = "/<img.*?src=\"(.*?)\"[^\\>]+>/g".toRegex()
-    }
 }
