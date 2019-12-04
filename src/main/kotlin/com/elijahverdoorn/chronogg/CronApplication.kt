@@ -3,6 +3,7 @@
 package com.elijahverdoorn.chronogg
 
 import com.elijahverdoorn.chronogg.data.ChronoRssReader
+import com.elijahverdoorn.chronogg.data.ChronoSoupParser
 import com.google.gson.Gson
 import com.google.gson.JsonParser
 import java.io.File
@@ -12,7 +13,8 @@ class CronApplication(
     var configFileLocation: String = CONFIG_FILE_LOCATION
 ) {
     fun main() {
-        val deal = ChronoRssReader().latestDeal
+//        val deal = ChronoRssReader().latestDeal
+        val deal = ChronoSoupParser().latestDeal
         val json = Gson().toJson(deal)
         File(loadFileTarget()).writeText(json)
     }

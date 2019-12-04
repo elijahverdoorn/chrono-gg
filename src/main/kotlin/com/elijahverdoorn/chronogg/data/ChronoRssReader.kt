@@ -2,6 +2,7 @@ package com.elijahverdoorn.chronogg.data
 
 import com.apptastic.rssreader.Item
 import com.apptastic.rssreader.RssReader
+import com.elijahverdoorn.chronogg.constants.RSS_FEED_URL
 import com.elijahverdoorn.chronogg.models.Deal
 import org.jsoup.Jsoup
 import java.text.SimpleDateFormat
@@ -20,7 +21,8 @@ class ChronoRssReader {
                 date = parseDate(it),
                 price = parsePrice(it),
                 imgUrl = parseImage(parseDescription(latestItem)),
-                description = parseDescription(latestItem),
+//                description = parseDescription(latestItem),
+                steamPrice = -1.toFloat(),
                 communityLink = parseLink(latestItem)
             )
         }
