@@ -9,6 +9,8 @@ To see a sample of the JSON output, visit [https://elijahverdoorn.com/chronogg/d
 - Spring Boot
 - Cron
 - RSS
+- HTMLUnit
+- JSoup
 
 ## Usage
 The application can be run either as a Spring Boot REST service, or as a simple on-off application. The one-off use case is designed to be used with `cron`, but other uses are welcome.
