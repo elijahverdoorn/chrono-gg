@@ -12,7 +12,7 @@ import java.util.*
 import java.util.stream.Collectors
 
 class ChronoSoupParser {
-    var mainPageSoup: Element = Jsoup.connect(CHRONO_GG_URL).get().body() // The "soup" from the main chrono.gg page
+    var mainPageSoup: Element = Jsoup.parse(WebRenderer().getPageBody(CHRONO_GG_URL)) // The "soup" from the main chrono.gg page
     var rssFeedItem: Item = getLatestDealItem() // the latest item published to the RSS feed (easy to get the image this way)
 
     val latestDeal: Deal by lazy {
@@ -65,7 +65,7 @@ class ChronoSoupParser {
      */
     private fun parseSalePrice(doc: Element): Float {
         doc.getElementsByClass("btn btn--buy-now").forEach {
-            return it.getElementById("price").text().toFloat()
+            return it.getElementById("price").text().trim().substring(1).toFloat() // The string has a leading "$" character - remove it with .substring() or else app will fail to parse
         }
         return -1.toFloat()
     }
@@ -76,7 +76,7 @@ class ChronoSoupParser {
     private fun parseSteamPrice(doc: Element): Float {
         doc.getElementsByClass("list-price").forEach {
             it.getElementsByClass("strikethrough").forEach {
-                return it.text().toFloat()
+                return it.text().trim().substring(1).toFloat() // Remove leading "$" character and any whitespace to allow for float parsing
             }
         }
         return -1.toFloat()

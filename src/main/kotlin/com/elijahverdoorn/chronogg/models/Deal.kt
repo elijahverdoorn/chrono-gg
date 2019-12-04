@@ -2,6 +2,7 @@ package com.elijahverdoorn.chronogg.models
 
 import com.elijahverdoorn.chronogg.constants.CHRONO_GG_URL
 import java.util.*
+import kotlin.math.roundToInt
 
 data class Deal(
     val title: String, // The title of the game on sale
@@ -11,5 +12,6 @@ data class Deal(
     val communityLink: String, // A link to the chrono.gg community page for this deal
     val imgUrl: String, // link to the image associated with this deal
     val link: String = CHRONO_GG_URL, // A link to chrono.gg main page
-    val timestamp: Date = Date() // The time that this record was created.
+    val timestamp: Date = Date(), // The time that this record was created
+    val discountPercent: Int = (((steamPrice - price) / steamPrice) * 100).roundToInt()
 )
