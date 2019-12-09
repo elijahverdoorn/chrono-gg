@@ -6,7 +6,6 @@ import com.elijahverdoorn.chronogg.constants.CHRONO_GG_URL
 import com.elijahverdoorn.chronogg.constants.RSS_FEED_URL
 import com.elijahverdoorn.chronogg.models.Deal
 import org.jsoup.Jsoup
-import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import java.util.*
 import java.util.stream.Collectors
