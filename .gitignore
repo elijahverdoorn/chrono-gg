@@ -16,3 +16,9 @@
 # configuration and output files
 config.json
 chronoDailyDeal.json
+
+# firebase files
+.firebaserc
+
+# nodejs files
+node_modules
