@@ -13,15 +13,17 @@ const {
 
 process.env.DEBUG = 'dialogflow:debug'; // enables lib debugging statements
 
+// URLs
 const DEAL_JSON_URL = "https://elijahverdoorn.com/chronogg/deal.json";
+
+// Phrases (exposed to users)
+const ERROR_TEXT = "Sorry, there's been an error. Please try again later.";
+
+// Intent names
+const GET_DAILY_DEAL_INTENT = 'GetDailyDeal';
 
 exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, response) => {
   const agent = new WebhookClient({ request, response });
-
-	function fallback(agent) {
-		let text = `Sorry, there's been an error. Please try again later.`
-		agent.add(text)
-	}
 
   async function getDailyDeal(agent) {
 		let json =  await getDealJSON();
@@ -39,16 +41,20 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
         buttonText: buttonText,
         buttonUrl: json.link
 		}));
+
+		// Add daily update suggestion if user doesn't have it enabled yet
+		if () {
+			agent.add(new Suggestion(`Send Daily Update`));
+		}
   }
 
   let getDealJSON = () => {
-		return fetch('https://elijahverdoorn.com/chronogg/deal.json').then(res => res.json());
+		return fetch(DEAL_JSON_URL).then(res => res.json());
   };
 
   // Run the proper function handler based on the matched Dialogflow intent name
   let intentMap = new Map();
-  intentMap.set('GetDailyDeal', getDailyDeal);
-	intentMap.set('', fallback);
+  intentMap.set(GET_DAILY_DEAL_INTENT, getDailyDeal);
 
   agent.handleRequest(intentMap);
 });

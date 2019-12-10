@@ -2,7 +2,6 @@
 
 package com.elijahverdoorn.chronogg
 
-import com.elijahverdoorn.chronogg.data.ChronoRssReader
 import com.elijahverdoorn.chronogg.data.ChronoSoupParser
 import com.google.gson.Gson
 import com.google.gson.JsonParser
