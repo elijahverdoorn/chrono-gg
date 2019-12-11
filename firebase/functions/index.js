@@ -1,15 +1,18 @@
-// See https://github.com/dialogflow/dialogflow-fulfillment-nodejs
-// for Dialogflow fulfillment library docs, samples, and to report issues
 'use strict';
 
 const functions = require('firebase-functions');
 const fetch = require('node-fetch');
-const { WebhookClient } = require('dialogflow-fulfillment');
+const {
+	WebhookClient
+} = require('dialogflow-fulfillment');
 const {
 	Card,
 	Suggestion,
 	Button
 } = require('dialogflow-fulfillment');
+const {
+	RegistrationUpdate
+} = require('actions-on-google');
 
 process.env.DEBUG = 'dialogflow:debug'; // enables lib debugging statements
 
@@ -20,7 +23,8 @@ const DEAL_JSON_URL = "https://elijahverdoorn.com/chronogg/deal.json";
 const ERROR_TEXT = "Sorry, there's been an error. Please try again later.";
 
 // Intent names
-const GET_DAILY_DEAL_INTENT = 'GetDailyDeal';
+const GET_DAILY_DEAL_INTENT = "GetDailyDeal";
+const GET_DAILY_DEAL_ROUTINE_INTENT = "GetDailyDealRoutineUpdate";
 
 exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, response) => {
   const agent = new WebhookClient({ request, response });
@@ -41,12 +45,7 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
         buttonText: buttonText,
         buttonUrl: json.link
 		}));
-
-		// Add daily update suggestion if user doesn't have it enabled yet
-		if () {
-			agent.add(new Suggestion(`Send Daily Update`));
-		}
-  }
+	}
 
   let getDealJSON = () => {
 		return fetch(DEAL_JSON_URL).then(res => res.json());
@@ -55,6 +54,7 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
   // Run the proper function handler based on the matched Dialogflow intent name
   let intentMap = new Map();
   intentMap.set(GET_DAILY_DEAL_INTENT, getDailyDeal);
+  intentMap.set(GET_DAILY_DEAL_ROUTINE_INTENT, getDailyDeal); // implicit invocation for daily update flow
 
   agent.handleRequest(intentMap);
 });
