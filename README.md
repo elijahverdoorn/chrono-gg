@@ -1,3 +1,8 @@
+# Deprecation Notice
+
+As a result of [this announcement posted to Twitter](https://twitter.com/chronodeals/status/1316771285167419394?s=20), Chrono.gg will be shutting down. As a result, development of this project will halt and the action will be disabled. Thank you for using Chrono Daily Deal.
+
+
 # Chrono.gg API
 
 A simple application that wraps the Deal-of-the-Day RSS system found on chrono.gg into a REST API, or a daily script to pull the deal from the feed and wrap it in a convenient JSON file.
